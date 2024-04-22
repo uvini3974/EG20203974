@@ -18,8 +18,10 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: 'docker-test3974', variable: 'dockertest')]) {
-                 bat'docker login -u uviniisanka -p ${dockertest}'
-                   }
+                    script{
+                        bat'docker login -u uviniisanka -p %dockertest%'
+                    }
+                }
             }
         }
         stage('Push Image') {
